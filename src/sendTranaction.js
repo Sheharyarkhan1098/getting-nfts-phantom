@@ -56,14 +56,14 @@ export const SendOneLamportToRandomAddress: FC = () => {
       console.log(nfts);
       setData(nfts);
       let imageData = []
-        nfts.map(async (obj) => {const response = await fetch(obj.data.uri); const result = await response.json(); imageData.push({name: obj.data.name, src: result.image});});
+        await Promise.all(nfts.map(async (obj) => {const response = await fetch(obj.data.uri); const result = await response.json(); imageData.push({name: obj.data.name, src: result.image});}));
         
-       setTimeout(() => {
+//        setTimeout(() => {
          console.log(imageData, "imageResult")
          setImages(imageData)
          setShowData(true)
          setMessage("")
-       }, 6000)    
+//        }, 6000)    
       // return nfts;
     } 
 
